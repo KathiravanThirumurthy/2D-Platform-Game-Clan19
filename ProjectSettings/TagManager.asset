@@ -42,6 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer
+  - name: Bg
+    uniqueID: 3505630937
+    locked: 0
+  - name: Groundlayer
     uniqueID: 2129331559
+    locked: 0
+  - name: Player
+    uniqueID: 1633067127
     locked: 0

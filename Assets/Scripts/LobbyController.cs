@@ -17,10 +17,12 @@ public class LobbyController : MonoBehaviour
     }
     private void StartGame()
     {
+       
         SceneManager.LoadScene(1);
     }
     private void QuitGame()
     {
         Application.Quit();
     }
+    
 }

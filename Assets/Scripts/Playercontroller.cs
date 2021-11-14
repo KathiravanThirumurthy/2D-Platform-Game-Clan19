@@ -34,11 +34,7 @@ public class Playercontroller : MonoBehaviour
         isGrounded = true;
         isDeath = false;
         gameLives = 3;
-       /* m_ScaleX = Player_Collider.size.x;
-        m_ScaleY = Player_Collider.size.y;
-        m_ScaleZ = Player_Collider.size.z;
-        Debug.Log("Current Sprite Size before: " + sr.sprite.bounds.size);
-        Debug.Log("Current BoxCollider Size before: " + Player_Collider.size);*/
+       
 
     }
     private void Start()
@@ -69,11 +65,6 @@ public class Playercontroller : MonoBehaviour
             print("Control key was pressed");
             print("Sprite bound size:"+sr.sprite.bounds.size/2);
             
-            /*Player_Collider.size = new Vector3(1.13f, 1.64f);
-            Player_Collider.offset = new Vector3(0f,0.63f);
-            Debug.Log("Current BoxCollider Size : " + Player_Collider.size);*/
-            
-
         }
         else if (Input.GetKeyUp(KeyCode.RightControl) || Input.GetKeyUp(KeyCode.LeftControl))
         {
@@ -94,16 +85,14 @@ public class Playercontroller : MonoBehaviour
         if (vertical > 0)
         {
              animator.SetBool("jump", true);
-            /*Player_Collider.size = new Vector3(1f, 1.8f);
-            Player_Collider.offset = new Vector3(0f, 1.6f);*/
+           
 
         }
             
         else
         {
             animator.SetBool("jump", false);
-           /* Player_Collider.size = new Vector3(0.6f, 2.3f);
-            Player_Collider.offset = new Vector3(0f, 0.98f);*/
+           
         }
             
     }

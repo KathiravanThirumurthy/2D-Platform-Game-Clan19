@@ -5,11 +5,12 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    
     private TextMeshProUGUI scoreText;
     private int score = 0;
     private void Awake()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.Find("Canvas").GetComponentInChildren<TextMeshProUGUI>();
     }
     private void Start()
     {

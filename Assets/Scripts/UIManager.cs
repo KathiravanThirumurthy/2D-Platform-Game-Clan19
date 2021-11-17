@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private Text _gameOverText;
     [SerializeField]
-    private Text _scoreText;
-    private LeveloverController _levelOver;
+    private Text _scoreText;*/
+  
     [SerializeField]
     private Image _livesImage;
     [SerializeField]
@@ -17,15 +17,12 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        _levelOver = GameObject.Find("LevelComplete").GetComponent<LeveloverController>();
+     
     }
     // Start is called before the first frame update
     void Start()
     {
-        if (_levelOver == null)
-        {
-            Debug.LogError("The LevelOverController is null");
-        }
+        
     }
 
     // Update is called once per frame
@@ -33,16 +30,7 @@ public class UIManager : MonoBehaviour
     {
 
     }
-    public void gameStatus()
-    {
-        Debug.Log("print UI");
-        _gameOverText.gameObject.SetActive(true);
-
-    }
-    public void displayScoreText(int score)
-    {
-        _scoreText.text = "Score :" + score;
-    }
+   
     public void updateLives(int currentLives)
     {
         //access display images sprite

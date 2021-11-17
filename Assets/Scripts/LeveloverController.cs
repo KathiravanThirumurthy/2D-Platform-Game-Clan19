@@ -6,22 +6,18 @@ using UnityEngine;
 public class LeveloverController : MonoBehaviour
 {
     private bool reset;
-    private UIManager _uimanager;
     public int nextSceneLoad;
-
+    [SerializeField]
+    private AudioClip doorTouch;
     private void Awake()
     {
         reset = false;
-        _uimanager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+           nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     private void Start()
     {
-        if (_uimanager == null)
-        {
-            Debug.LogError("The UIMnager is null");
-        }
+        
     }
     private void Update()
     {
@@ -35,16 +31,17 @@ public class LeveloverController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Playercontroller player = collision.GetComponent<Playercontroller>();
-        if (player != null)
+        Hero _hero = collision.GetComponent<Hero>();
+        if (_hero != null)
         {
             Debug.Log("End of the Game");
-            _uimanager.gameStatus();
+            //_uimanager.gameStatus();
+            AudioManager.Instance.doorTouch(doorTouch);
             StartCoroutine("setTrueLevelCompleted");
             Time.timeScale = 0;
 
 
-        } 
+        }
     }
 
     IEnumerator setTrueLevelCompleted()

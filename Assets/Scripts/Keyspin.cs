@@ -5,10 +5,14 @@ using UnityEngine;
 public class Keyspin : MonoBehaviour
 {
     private int keyScore;
+    private Hero _hero;
    
     private void Awake()
     {
-       
+       /*if(_hero == null)
+        {
+            Debug.LogError("Hero COmponent is not found");
+        }*/
     }
     private void Update()
     {
@@ -16,21 +20,10 @@ public class Keyspin : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if(collision.gameObject.tag == "Player")
+        _hero = collision.gameObject.GetComponent<Hero>();
+        if(_hero!=null)
         {
-            Playercontroller player = collision.GetComponent<Playercontroller>();
-            if(player!=null)
-            {
-                player.addKeyScore(10);
-                detect = true;
-                Destroy(this.gameObject,2.0f);
-            }
-            
-        }*/
-        if(collision.gameObject.GetComponent<Playercontroller>()!=null)
-        {
-            Playercontroller _playercontroller = collision.gameObject.GetComponent<Playercontroller>();
-            _playercontroller.pickUpKey(10);
+            _hero.pickUpKey(10);
             Destroy(this.gameObject);
         }
     }

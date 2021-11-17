@@ -7,11 +7,11 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("enemy");
-        Playercontroller _player = collision.gameObject.GetComponent<Playercontroller>();
-        if(_player != null)
+        Hero _hero = collision.gameObject.GetComponent<Hero>();
+        if(_hero != null)
         {
-           
-            _player.killPlayer();
+
+            _hero.killPlayer();
         }
     }
 }

@@ -22,7 +22,7 @@ public class Playercontroller : MonoBehaviour
     private bool isDeath;
     private UIManager _uimanager;
     public ScoreManager _scorecontroller;
-    public GameOverCpontroller _gamecontroller;
+    public GameOverController _gamecontroller;
     private int gameLives;
     // Start is called before the first frame update
     void Awake()
@@ -138,14 +138,14 @@ public class Playercontroller : MonoBehaviour
         }
     }
 
-    public void addKeyScore(int score)
+   /* public void addKeyScore(int score)
     {
        
         _keyCollected+=score;
         _uimanager.displayScoreText(_keyCollected);
 
 
-    }
+    }*/
     public void pickUpKey(int score)
     {
         Debug.Log("Key pickedup");

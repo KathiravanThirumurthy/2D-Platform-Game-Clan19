@@ -8,10 +8,17 @@ public class Hero : MonoBehaviour
     private float _speed;
     [SerializeField]
     private float _jumpForce;
+    [SerializeField]
+    private AudioClip keyPickup;
     private bool isGrounded;
     private Rigidbody2D rgd;
     private SpriteRenderer sr;
     private PlayerAnimation _playerAnimation;
+    private ScoreManager _score;
+    private int gameLives;
+    private UIManager _uimanager;
+
+    private GameOverController _gamecontroller;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,12 +26,22 @@ public class Hero : MonoBehaviour
         {
             Debug.LogError("PlayerAnimation is null");
         }*/
+        _uimanager = GameObject.Find("Canvas").GetComponent<UIManager>();
         rgd = GetComponent<Rigidbody2D>();
+        _score=GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        _gamecontroller = GameObject.Find("Dead").GetComponent<GameOverController>();
+        _playerAnimation = GetComponent<PlayerAnimation>();
+
+        if(_score == null)
+        {
+            Debug.LogError("ScoreManager Component not Found");
+        }
     }
     void Start()
     {
         isGrounded = false;
-        _playerAnimation = GetComponent<PlayerAnimation>();
+        gameLives = 3;
+
     }
 
     // Update is called once per frame
@@ -56,4 +73,40 @@ public class Hero : MonoBehaviour
        
     }
     
+    public void pickUpKey(int score)
+    {
+        Debug.Log("Key pickedup");
+        AudioManager.Instance.PlayCollectable(keyPickup);
+        _score.IncreaseScore(score);
+
+    }
+    
+    public void playerDead()
+    {
+        Debug.Log("Player Dead - Restart the Level");
+        _gamecontroller.ReloadLevel();
+    }
+
+    public void killPlayer()
+    {
+
+        gameLives--;
+         Debug.Log(gameLives);
+        _uimanager.updateLives(gameLives);
+
+        if (gameLives < 0)
+        {
+
+            Debug.Log("Player Killed by the EnemyChomper ");
+        }
+        else if (gameLives == 0)
+        {
+           // animator.SetBool("dead", true);
+            _gamecontroller.playerDead();
+             Debug.Log("Remaining Lives : "+ gameLives);
+        }
+
+
+    }
+
 }

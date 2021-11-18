@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     private Rigidbody2D rgd;
     private SpriteRenderer sr;
     private PlayerAnimation _playerAnimation;
-    private ScoreManager _score;
+    
     private int gameLives;
     private UIManager _uimanager;
 
@@ -28,14 +28,10 @@ public class Hero : MonoBehaviour
         }*/
         _uimanager = GameObject.Find("Canvas").GetComponent<UIManager>();
         rgd = GetComponent<Rigidbody2D>();
-        _score=GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         _gamecontroller = GameObject.Find("Dead").GetComponent<GameOverController>();
         _playerAnimation = GetComponent<PlayerAnimation>();
 
-        if(_score == null)
-        {
-            Debug.LogError("ScoreManager Component not Found");
-        }
+      
     }
     void Start()
     {
@@ -77,14 +73,16 @@ public class Hero : MonoBehaviour
     {
         Debug.Log("Key pickedup");
         AudioManager.Instance.PlayCollectable(keyPickup);
-        _score.IncreaseScore(score);
+        _uimanager.IncreaseScore(score);
+       // _score.IncreaseScore(score);
 
     }
     
     public void playerDead()
     {
         Debug.Log("Player Dead - Restart the Level");
-        _gamecontroller.ReloadLevel();
+        _uimanager._levelRestart();
+       // _gamecontroller.ReloadLevel();
     }
 
     public void killPlayer()
@@ -101,8 +99,8 @@ public class Hero : MonoBehaviour
         }
         else if (gameLives == 0)
         {
-           // animator.SetBool("dead", true);
-            _gamecontroller.playerDead();
+            // animator.SetBool("dead", true);
+            _uimanager._levelRestart();
              Debug.Log("Remaining Lives : "+ gameLives);
         }
 

@@ -18,6 +18,10 @@ public class SceneManaging : MonoBehaviour
         Application.Quit();
     }
 
-   
+    public void reLoadingLevel()
+    {
+        Debug.Log("Restart Btn Clicked");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 }

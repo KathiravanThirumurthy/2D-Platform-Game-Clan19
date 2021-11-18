@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameOverController : MonoBehaviour
 {
-   /* public Button restartBtn;
-    public GameObject gObj;*/
+    //public Button restartBtn;
+   
+
 
     private void Awake()
     {
-        //restartBtn.onClick.AddListener(reLoadingLevel);
+       // restartBtn.onClick.AddListener(reLoadingLevel);
        // Debug.Log(gObj.name);
     }
     public void playerDead()
@@ -21,7 +22,6 @@ public class GameOverController : MonoBehaviour
     public void ReloadLevel()
     {
         Debug.Log("Reload when Dead");
-        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         StartCoroutine("setTrueLevelCompleted");
         Time.timeScale = 0;
        
@@ -43,8 +43,9 @@ public class GameOverController : MonoBehaviour
                       
         }
     }
-    private void reLoadingLevel()
+    public void reLoadingLevel()
     {
-       // gObj.SetActive(true);
+        Debug.Log("Restart Btn Clicked");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
